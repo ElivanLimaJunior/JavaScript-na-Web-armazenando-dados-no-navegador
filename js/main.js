@@ -8,8 +8,12 @@ form.addEventListener("submit", (evento) => {
     // console.log(evento.target.elements['nome'].value) pegando pelos elementos do target
     // console.log(evento.target.elements['quantidade'].value) é melhor dessa forma pois podemos futuramente acrescentar + elementos na lista.
 
-    // criarElemento(nome, quantidade) Os parametros para a função criarElementos são os dois target's dos elementos pegados anteriormente
+    // criarElemento(nome, quantidade) Os parametros para a função criarElementos são os dois target's dos elementos pegados anteriormente.
     criarElemento(evento.target.elements['nome'].value, evento.target.elements['quantidade'].value)
+
+    // Quando a função passar por aqui ele irá alterar o valor de name  e quantidade.
+    evento.target.elements['nome'].value = ""
+    evento.target.elements['quantidade'].value = ""
 })
 
 function criarElemento (nome, quantidade) { 
@@ -28,6 +32,6 @@ function criarElemento (nome, quantidade) {
     novoItem.innerHTML += nome // Adicionando o valor do parametro nome dentro da nossa tag.
 
     // criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
-    
+
     lista.appendChild(novoItem) // adicionando o Child "novoItem" na nossa lista e obtendo um resultado visual no HTML.
 }
