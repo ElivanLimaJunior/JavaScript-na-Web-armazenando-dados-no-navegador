@@ -1,4 +1,5 @@
 const form = document.getElementById('novoItem')
+const lista = document.getElementById('lista')// criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
 
 form.addEventListener("submit", (evento) => {
     evento.preventDefault() // Cancela o evento se for cancelável, sem parar a propagação do mesmo. Irá manter o resultado do evento previnindo o comportamento padrão do evento.
@@ -26,7 +27,6 @@ function criarElemento (nome, quantidade) {
     novoItem.appendChild(numeroItem) // adicionando o strong dentro do novoItem.
     novoItem.innerHTML += nome // Adicionando o valor do parametro nome dentro da nossa tag.
 
-    const lista = document.getElementById('lista') // criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
-
+    // criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
     lista.appendChild(novoItem) // adicionando o Child "novoItem" na nossa lista e obtendo um resultado visual no HTML.
 }
