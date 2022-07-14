@@ -24,6 +24,9 @@ function criarElemento (nome, quantidade) {
     numeroItem.innerHTML = quantidade // dentro do strong terá a nossa quantidade.
     
     novoItem.appendChild(numeroItem) // adicionando o strong dentro do novoItem.
+    novoItem.innerHTML += nome // Adicionando o valor do parametro nome dentro da nossa tag.
 
-    console.log(novoItem)
+    const lista = document.getElementById('lista') // criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
+
+    lista.appendChild(novoItem) // adicionando o Child "novoItem" na nossa lista e obtendo um resultado visual no HTML.
 }
