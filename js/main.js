@@ -14,4 +14,16 @@ form.addEventListener("submit", (evento) => {
 function criarElemento (nome, quantidade) { 
     console.log(nome) // vamos ver se está funcionando corretamente.
     console.log(quantidade) // veremos se os parametros certos estão sendo passados.
+
+    // <li class="item"><strong>7</strong>Camisa</li>
+    // para criar um elementos usamos o createElement()
+    const novoItem = document.createElement('li')
+    novoItem.classList.add("item") // adicionamos a classe item no nosso 'li'
+
+    const numeroItem = document.createElement('strong')
+    numeroItem.innerHTML = quantidade // dentro do strong terá a nossa quantidade.
+    
+    novoItem.appendChild(numeroItem) // adicionando o strong dentro do novoItem.
+
+    console.log(novoItem)
 }
