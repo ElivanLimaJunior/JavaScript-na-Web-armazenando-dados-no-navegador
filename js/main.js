@@ -1,6 +1,12 @@
 const form = document.getElementById('novoItem')
 const lista = document.getElementById('lista')// criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
-const items = []
+const itens = JSON.parse(localStorage.getItem("itens")) || [] // se o localStorage estiver vazio, ele irá criar um array lá dentro. Lembrando que usamos O JSON para transformar esses valores em uma string, então precisamos transformalo novamente em uma array. Por isso usamos o JSON.Parse.
+
+console.log(itens)
+
+itens.forEach( (elemento) => {
+    console.log(elemento.nome, elemento.quantidade)
+})
 
 form.addEventListener("submit", (evento) => {
     evento.preventDefault() // Cancela o evento se for cancelável, sem parar a propagação do mesmo. Irá manter o resultado do evento previnindo o comportamento padrão do evento.
@@ -45,15 +51,15 @@ function criarElemento (nome, quantidade) {
     */
 
     // toda vez que a gente tem uma chave com valores e quer salvar um dicionario de informações, nós utilizamos um objeto.
-    
+
     const itemAtual = { //então criamos um objeto com as informações que queremos passar para o localStorage, então podemos nomear de outra forma e passar essa informação para os parametros do localStorage
         "nome": nome,
         "quantidade": quantidade
     }
 
-    items.push(itemAtual) // para inserirmos itens no array, e para isso vamos inserir os o nosso object
+    itens.push(itemAtual) // para inserirmos itens no array, e para isso vamos inserir os o nosso object
 
-    localStorage.setItem("item", JSON.stringify(items)) // O localStorage só salva texto, então usamos o JSON.stringify para transformar o nosso objeto em um texto.
+    localStorage.setItem("itens", JSON.stringify(itens)) // O localStorage só salva texto, então usamos o JSON.stringify para transformar o nosso objeto em um texto.
 
     // Porém não precisamos apenas de um objeto para guardar um item, então precisamos criar uma Array. Então criamos a variável items onde contem uma array.
 
