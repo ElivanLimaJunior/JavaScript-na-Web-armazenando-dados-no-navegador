@@ -45,7 +45,7 @@ function criarElemento (nome, quantidade) {
     */
 
     // toda vez que a gente tem uma chave com valores e quer salvar um dicionario de informações, nós utilizamos um objeto.
-
+    
     const itemAtual = { //então criamos um objeto com as informações que queremos passar para o localStorage, então podemos nomear de outra forma e passar essa informação para os parametros do localStorage
         "nome": nome,
         "quantidade": quantidade
