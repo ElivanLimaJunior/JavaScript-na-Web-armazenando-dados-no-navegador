@@ -38,4 +38,7 @@ function criarElemento (nome, quantidade) {
     // criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
 
     lista.appendChild(novoItem) // adicionando o Child "novoItem" na nossa lista e obtendo um resultado visual no HTML.
+
+    localStorage.setItem("nome", nome)
+    localStorage.setItem("quantidade", quantidade)
 }
