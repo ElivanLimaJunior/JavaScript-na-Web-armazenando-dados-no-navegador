@@ -1,5 +1,6 @@
 const form = document.getElementById('novoItem')
 const lista = document.getElementById('lista')// criando uma const chamada lista para que todo o nosso JS trabalher com o ID e também a nossa resposta será visual.
+const items = []
 
 form.addEventListener("submit", (evento) => {
     evento.preventDefault() // Cancela o evento se for cancelável, sem parar a propagação do mesmo. Irá manter o resultado do evento previnindo o comportamento padrão do evento.
@@ -39,6 +40,24 @@ function criarElemento (nome, quantidade) {
 
     lista.appendChild(novoItem) // adicionando o Child "novoItem" na nossa lista e obtendo um resultado visual no HTML.
 
-    localStorage.setItem("nome", nome)
-    localStorage.setItem("quantidade", quantidade)
+    /*
+        Salvando itens no navegador
+    */
+
+    // toda vez que a gente tem uma chave com valores e quer salvar um dicionario de informações, nós utilizamos um objeto.
+
+    const itemAtual = { //então criamos um objeto com as informações que queremos passar para o localStorage, então podemos nomear de outra forma e passar essa informação para os parametros do localStorage
+        "nome": nome,
+        "quantidade": quantidade
+    }
+
+    items.push(itemAtual) // para inserirmos itens no array, e para isso vamos inserir os o nosso object
+
+    localStorage.setItem("item", JSON.stringify(items)) // O localStorage só salva texto, então usamos o JSON.stringify para transformar o nosso objeto em um texto.
+
+    // Porém não precisamos apenas de um objeto para guardar um item, então precisamos criar uma Array. Então criamos a variável items onde contem uma array.
+
+    // após isso nos podemos limpar o nosso localStorage no console do navegador.
+
+    // Resuminho: Só para deixar tudo muito claro, toda vez que eu preciso criar um grupo de elementos, um grupo de informações referentes aquele mesmo elemento, eu crio um objeto e aqui eu tenho o par chave valor dentro do objeto, nome/nome, e toda vez que eu preciso juntar esse grupo de informações em um único lugar, eu crio um array com esses grupos, nesse caso um array de objetos. O Local Storage só nos deixa guardar string, por isso tivemos que usar o método stringify Json para guardar todos esses elementos em uma string. É isso. É assim que vamos sempre interagir inserindo os dados no Local Storage.
 }
