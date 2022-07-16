@@ -42,4 +42,5 @@ function criarElemento (item) {
     novoItem.innerHTML += item.nome
 
     lista.appendChild(novoItem)
+    
 }
