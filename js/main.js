@@ -41,7 +41,7 @@ form.addEventListener("submit", (evento) => {
         
     localStorage.setItem("itens", JSON.stringify(itens)) 
 
-    name.value = ""
+    nome.value = ""
     quantidade.value = ""
 })
 
@@ -57,9 +57,29 @@ function criarElemento (item) {
 
     novoItem.innerHTML += item.nome
 
+    novoItem.appendChild(botaoDeleta())
+
     lista.appendChild(novoItem)    
 }
 
 function atualizaElemento(item) {
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade
+}
+
+
+// Criando botão X para remover um item
+// Quando criamos um botão ele não recebo o addEventListener
+function botaoDeleta () {
+    const elementoBotao = document.createElement("button")
+    elementoBotao.innerHTML = "X"
+
+    elementoBotao.addEventListener("click", function() { // this não funciona junto com uma arrow function
+        deletaElemento(this.parentNode) // para referir ao botão que eu cliquei
+    })
+
+    return elementoBotao
+}
+
+function deletaElemento(tag) {
+    tag.remove()
 }
