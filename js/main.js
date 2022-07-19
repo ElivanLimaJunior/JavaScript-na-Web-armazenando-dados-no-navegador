@@ -26,9 +26,10 @@ form.addEventListener("submit", (evento) => {
          
         atualizaElemento(itemAtual)
 
-        itens[existe.id] = itemAtual
+        itens[itens.findIndex(elemento => elemento.id === existe.id)] = itemAtual // 3 pegando o elemento correto e atualizando o id correto
     } else {
-        itemAtual.id = itens.length
+        itemAtual.id = itens[itens.length -1] ? (itens[itens.length-1]).id + 1 : 0; // 1 operador ternario, se não tiver nada  no nosso array nós iremos adicionar o valor 0. Agora se tiver ele irá somar 1.
+        // 2 nos precisamos encontrar o ultimo elemento do array. Então nós precisamo encontrar o ultimo elemento e somar o array + 1 
 
         criarElemento(itemAtual)
 
@@ -45,6 +46,8 @@ form.addEventListener("submit", (evento) => {
     quantidade.value = ""
 })
 
+// Criando elemento
+
 function criarElemento (item) { 
 
     const novoItem = document.createElement('li')
@@ -57,7 +60,7 @@ function criarElemento (item) {
 
     novoItem.innerHTML += item.nome
 
-    novoItem.appendChild(botaoDeleta())
+    novoItem.appendChild(botaoDeleta(item.id))
 
     lista.appendChild(novoItem)    
 }
@@ -69,17 +72,22 @@ function atualizaElemento(item) {
 
 // Criando botão X para remover um item
 // Quando criamos um botão ele não recebo o addEventListener
-function botaoDeleta () {
+function botaoDeleta (id) {
     const elementoBotao = document.createElement("button")
     elementoBotao.innerHTML = "X"
 
     elementoBotao.addEventListener("click", function() { // this não funciona junto com uma arrow function
-        deletaElemento(this.parentNode) // para referir ao botão que eu cliquei
+        deletaElemento(this.parentNode, id) // para referir ao botão que eu cliquei
     })
 
     return elementoBotao
 }
 
-function deletaElemento(tag) {
-    tag.remove()
+function deletaElemento(tag, id) {
+
+    tag.remove() // remover a tag
+
+    itens.splice(itens.findIndex(elemento => elemento.id === id), 1) // procuramos com o findIndex() e dentro dele passamos "elemento" e vamos buscar "=>" "elemento.id == id"
+ 
+    localStorage.setItem("itens", JSON.stringify(itens)) // passando para o local storage remover o item clicado.
 }
