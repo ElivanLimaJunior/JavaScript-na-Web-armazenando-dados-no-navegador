@@ -39,7 +39,6 @@ form.addEventListener("submit", (evento) => {
     /*
         Salvando itens no navegador
     */
-        
     localStorage.setItem("itens", JSON.stringify(itens)) 
 
     nome.value = ""
